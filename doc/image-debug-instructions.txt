@@ -1,0 +1,5 @@
+# Use minikube vm docker host
+eval $(minikube docker-env)
+
+# Reset docker host
+eval $(docker-machine env --unset)

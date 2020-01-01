@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: playing-with-kubernetes
+  labels:
+    name: playing-with-kubernetes
+spec:
+  containers:
+  - name: playing-with-kubernetes
+    image: playing-with-kubernetes
+    imagePullPolicy: Never
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    
+
+    
+    

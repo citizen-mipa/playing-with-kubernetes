@@ -1,0 +1,5 @@
+# Create pod
+kubectl create -f k8s-deploy-pod.yaml
+
+# Delete pod
+kubectl delete -f k8s-deploy-pod.yaml
