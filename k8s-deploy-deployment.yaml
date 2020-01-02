@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: playing-with-kubernetes
+spec:
+  selector:
+    matchLabels:
+      app: playing-with-kubernetes
+  template:
+    metadata:
+      labels:
+        app: playing-with-kubernetes
+    spec:
+      containers:
+      - name: playing-with-kubernetes
+        image: playing-with-kubernetes
+        resources:
+          requests:
+            memory: "10M"
+            cpu: "20m"
+          limits:
+            memory: "20M"
+            cpu: "20m"

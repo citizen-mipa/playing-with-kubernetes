@@ -8,11 +8,14 @@ spec:
   containers:
   - name: playing-with-kubernetes
     image: playing-with-kubernetes
-    imagePullPolicy: Never
+    imagePullPolicy: IfNotPresent
     resources:
+      requests:
+        memory: "10M"
+        cpu: "20m"
       limits:
-        memory: "128Mi"
-        cpu: "500m"
+        memory: "20M"
+        cpu: "20m"
     
 
     
