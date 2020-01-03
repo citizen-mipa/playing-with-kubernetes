@@ -3,3 +3,4 @@ Helm & Tiller for configuration
 Read up on kubernetes theory
 Starting writing material
 Rust Web Server & kubernetes service
+Do not re-download/compile dependencies on every code change
