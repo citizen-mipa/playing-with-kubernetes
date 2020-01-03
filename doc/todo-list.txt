@@ -1,0 +1,4 @@
+Azure CLI - Create env + cluster + acr
+Helm & Tiller for configuration
+Starting writing material
+Rust Web Server & kubernetes service

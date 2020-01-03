@@ -21,6 +21,10 @@ kubectl apply -f k8s-deployment.yaml
 # Start rolling upgrade
 kc set image deployments/playing-with-kubernetes playing-with-kubernetes=playing-with-kubernetes:0.1.2
 
+# Undo a deployment
+kc rollout undo deployments/playing-with-kubernetes
+kc rollout undo deployments/playing-with-kubernetes --to-revision=2 
+
 # View rollout progress
 kc rollout status deployment playing-with-kubernetes
 
