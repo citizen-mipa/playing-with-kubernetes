@@ -1,5 +1,22 @@
+#----------------------
 # Create pod
-kubectl create -f k8s-deploy-pod.yaml
+kubectl create -f k8s-pod.yaml
 
 # Delete pod
-kubectl delete -f k8s-deploy-pod.yaml
+kubectl delete -f k8s-pod.yaml
+
+#----------------------
+# Create deployment
+kubectl create -f k8s-deployment.yaml
+
+# Delete deployment
+kubectl create -f k8s-deployment.yaml
+
+#----------------------
+# Update configuration
+kubectl apply -f k8s-deployment.yaml
+
+
+#----------------------
+# Monitoring rollout of new application version
+kubectl rollout
