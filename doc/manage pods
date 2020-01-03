@@ -13,10 +13,16 @@ kubectl create -f k8s-deployment.yaml
 kubectl create -f k8s-deployment.yaml
 
 #----------------------
-# Update configuration
+# Update manifest configuration
 kubectl apply -f k8s-deployment.yaml
 
 
 #----------------------
-# Monitoring rollout of new application version
-kubectl rollout status
+# Start rolling upgrade
+kc set image deployments/playing-with-kubernetes playing-with-kubernetes=playing-with-kubernetes:0.1.2
+
+# View rollout progress
+kc rollout status deployment playing-with-kubernetes
+
+# View deployment history
+kc rollout history deployment
