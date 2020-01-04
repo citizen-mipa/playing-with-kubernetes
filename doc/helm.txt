@@ -1,0 +1,8 @@
+# Add repo
+helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+
+# Get latest version of charts
+helm repo update
+
+# Create new chart
+helm create mychart
