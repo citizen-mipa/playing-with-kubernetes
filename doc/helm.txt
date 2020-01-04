@@ -18,3 +18,9 @@ helm list --all-namespaces
 
 # View installed manifest
 helm get manifest playing-with-kubernetes
+
+# Upgrade
+helm upgrade playing-with-kubernetes ./charts
+
+# Rollback upgrade
+helm rollback playing-with-kubernetes 1
