@@ -1,5 +1,7 @@
 Azure CLI - Create env + cluster + acr
 Helm & Tiller for configuration
+    input variables
+    deploy script
 Read up on kubernetes theory
 Starting writing material
 Rust Web Server & kubernetes service
