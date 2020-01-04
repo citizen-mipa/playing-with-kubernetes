@@ -6,3 +6,9 @@ helm repo update
 
 # Create new chart
 helm create mychart
+
+# Install chart
+helm install mychart ./mychart
+
+# View installed manifest
+helm get manifest mychart

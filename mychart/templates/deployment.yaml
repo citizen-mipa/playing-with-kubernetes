@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.image.repository }}
+  labels:
+    app: {{ .Values.image.repository }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name:  {{ .Values.image.repository }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.image.repository }}
+    spec:
+      containers:
+        - name: {{ .Values.image.repository }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
