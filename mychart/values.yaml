@@ -1,6 +1,0 @@
-replicaCount: 3
-
-image:
-  repository: playing-with-kubernetes
-  tag: 0.1.1
-  pullPolicy: IfNotPresent

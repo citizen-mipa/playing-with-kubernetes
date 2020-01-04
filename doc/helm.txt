@@ -8,7 +8,13 @@ helm repo update
 helm create mychart
 
 # Install chart
-helm install mychart ./mychart
+helm install -name playing-with-kubernetes ./charts -n default
+
+# Uninstall chart
+helm uninstall -name playing-with-kubernetes -n default 
+
+# List installed charts
+helm list --all-namespaces
 
 # View installed manifest
-helm get manifest mychart
+helm get manifest playing-with-kubernetes
