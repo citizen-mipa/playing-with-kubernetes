@@ -1,3 +1,4 @@
-.\build.ps1
+. .\pscommon\functions.ps1
 
-docker run --rm -it playing-with-kubernetes
+Build
+Run

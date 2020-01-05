@@ -1,10 +1,5 @@
-$releaseName = 'playing-with-kubernetes'
-$releases = helm list
+. .\pscommon\functions.ps1
 
-if ($releases[1] -like "*$releaseName*") {
-    # upgrade instead of install
-    helm upgrade $releaseName ./charts
-}
-else {
-    helm install -name $releaseName ./charts -n 'default'
-}
+$version=GetApplicationVersion
+
+Deploy -ApplicationVersion $version
