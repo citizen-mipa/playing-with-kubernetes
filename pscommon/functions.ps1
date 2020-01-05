@@ -31,7 +31,7 @@ function Deploy {
     }
     else {
         Write-Host "Installing version $ApplicationVersion"
-        helm install -name $ReleaseName ./charts -n 'default'
+        helm install -name $ReleaseName ./charts -n 'default' --set image.tag=$ApplicationVersion
         
     }
 }
