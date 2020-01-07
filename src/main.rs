@@ -1,20 +1,23 @@
-use futures::executor::block_on;
-use std::time::Duration;
-use std::thread::sleep;
+use actix_web::{middleware, web, App, HttpRequest, HttpServer};
 
-fn main() {
-    let future = hello_world();
-    block_on(future);
+async fn index(req: HttpRequest) -> &'static str {
+    println!("REQ: {:?}", req);
+    "Hello world!"
 }
 
-async fn hello_world() {
-    loop {
-        println!("hello world test!");
-        delay().await
-    }
-}
+#[actix_rt::main]
+async fn main() -> std::io::Result<()> {
+    std::env::set_var("RUST_LOG", "actix_web=info");
+    env_logger::init();
 
-async fn delay() {
-    let ten_secs = Duration::from_secs(10);
-    sleep(ten_secs);
+    HttpServer::new(|| {
+        App::new()
+            // enable logger
+            .wrap(middleware::Logger::default())
+            .service(web::resource("/index.html").to(|| async { "Hello world!" }))
+            .service(web::resource("/").to(index))
+    })
+    .bind("127.0.0.1:8080")?
+    .run()
+    .await
 }
