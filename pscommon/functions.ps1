@@ -1,4 +1,4 @@
-function Build {
+function BuildContainer {
     Param (
         [String] $ApplicationName = 'playing-with-kubernetes'
     )
@@ -15,7 +15,7 @@ function Build {
     }
   }
 
-function Deploy {
+function DeployContainer {
     Param (
         [String] $ApplicationVersion = 'latest',
         [String] $ReleaseName = 'playing-with-kubernetes'
@@ -36,7 +36,7 @@ function Deploy {
     }
 }
 
-function Run {
+function RunContainer {
     Param (
         [String] $ReleaseName = 'playing-with-kubernetes'
     )

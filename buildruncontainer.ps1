@@ -1,3 +1,4 @@
 . .\pscommon\functions.ps1
 
-Run
+BuildContainer
+RunContainer

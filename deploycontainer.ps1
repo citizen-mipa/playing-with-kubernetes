@@ -2,4 +2,4 @@
 
 $version=GetApplicationVersion
 
-Deploy -ApplicationVersion $version
+DeployContainer -ApplicationVersion $version
