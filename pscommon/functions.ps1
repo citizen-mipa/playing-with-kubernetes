@@ -41,7 +41,12 @@ function RunContainer {
         [String] $ReleaseName = 'playing-with-kubernetes'
     )
 
-    docker run --rm -it $ReleaseName
+    # remove container on exit
+    docker run --rm --publish-all -it $ReleaseName
+}
+
+function RunCargo {
+    cargo run
 }
 
 function GetApplicationVersion {

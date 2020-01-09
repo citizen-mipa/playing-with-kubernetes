@@ -1,0 +1,6 @@
+# Look at container configuration
+docker inspect playing-with-kubernetes
+
+# Execute commands (curl) inside docker container
+docker exec -it e2e517d5a27b  ash -c 'apk add curl'
+docker exec -it e2e517d5a27b  ash -c 'curl http://localhost:8080'
