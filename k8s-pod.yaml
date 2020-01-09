@@ -9,6 +9,9 @@ spec:
   - name: playing-with-kubernetes
     image: playing-with-kubernetes
     imagePullPolicy: IfNotPresent
+    ports:
+    - containerPort: 8080
+      protocol: TCP
     resources:
       requests:
         memory: "10M"
