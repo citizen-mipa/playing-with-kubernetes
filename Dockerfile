@@ -19,6 +19,6 @@ RUN RUSTFLAGS=-Clinker=musl-gcc cargo build --release --target=x86_64-unknown-li
 #2 package based on smaller image
 FROM alpine:latest
 COPY --from=cargo-build /usr/src/playing-with-kubernetes/target/x86_64-unknown-linux-musl/release/playing-with-kubernetes .
-EXPOSE 8080/tcp
+EXPOSE 8080
 ENTRYPOINT ["./playing-with-kubernetes"]
 

@@ -10,7 +10,7 @@ kubectl delete -f k8s-pod.yaml
 kubectl create -f k8s-deployment.yaml
 
 # Delete deployment
-kubectl create -f k8s-deployment.yaml
+kubectl delete -f k8s-deployment.yaml
 
 #----------------------
 # Update manifest configuration
@@ -30,3 +30,7 @@ kc rollout status deployment playing-with-kubernetes
 
 # View deployment history
 kc rollout history deployment
+
+#----------------------
+# Verify service is bound correctly
+kc get endpoints playing-with-kubernetes
