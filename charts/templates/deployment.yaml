@@ -16,6 +16,9 @@ spec:
       - name: {{ .Values.image.repository }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+        ports:
+        - containerPort: {{ .Values.pod.port }}
+          protocol: {{ .Values.pod.protocol }}
         resources:
           requests:
             memory: {{ .Values.resources.requests.memory }}

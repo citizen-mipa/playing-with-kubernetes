@@ -1,9 +1,16 @@
 replicaCount: 3
 
+pod:
+  port: 8080
+  protocol: TCP
+
 image:
   repository: playing-with-kubernetes
   tag: latest
   pullPolicy: IfNotPresent
+
+service:
+  port: 8999
 
 resources:
   requests:
