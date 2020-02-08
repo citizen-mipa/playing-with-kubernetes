@@ -8,7 +8,7 @@ function BuildContainer {
     docker build -t $ApplicationName':'$version .
     docker tag $ApplicationName':'$version $ApplicationName':latest'
   
-    docker image prune -f
+    #docker image prune -f (disabled, testing if this ruins cache)
 
     return @{
         "version"=$version

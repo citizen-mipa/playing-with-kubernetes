@@ -1,24 +1,34 @@
-#1a get tools etc
-FROM rust:latest as cargo-build
+#1 Make tools source using rust image as base
+FROM rust:latest as toolchain
 RUN apt-get update
 RUN apt-get install musl-tools -y
 RUN rustup target add x86_64-unknown-linux-musl
-WORKDIR /usr/src/playing-with-kubernetes
 
-#1b avoid building dependencies
-#COPY Cargo.toml Cargo.toml
-#RUN mkdir src/
-#RUN echo "fn main() {println!(\"if you see this, the build broke\")}" > src/main.rs
-#RUN RUSTFLAGS=-Clinker=musl-gcc cargo build --release --target=x86_64-unknown-linux-musl
-#RUN rm -f target/x86_64-unknown-linux-musl/release/deps/playing-with-kubernetes*
+ENV USER=root
+ENV PATH=/root/.cargo/bin:$PATH
 
-#1c building application with cargo
+#2 Add new folder and add application dependencies to it
+FROM toolchain as bare-sources
+RUN cd / && \
+    mkdir -p playground && \
+    cargo init playground
+WORKDIR /playground
+
+ADD Cargo.toml /playground/Cargo.toml
+ADD Cargo.lock /playground/Cargo.lock
+RUN cargo fetch
+
+#3 Build dependencies to cache then and then copy the rest of the sources
+FROM bare-sources as sources
+RUN RUSTFLAGS=-Clinker=musl-gcc cargo build --release --target=x86_64-unknown-linux-musl
+RUN rm src/*.rs
 COPY . .
 RUN RUSTFLAGS=-Clinker=musl-gcc cargo build --release --target=x86_64-unknown-linux-musl
 
-#2 package based on smaller image
+#4 package based on smaller image
 FROM alpine:latest
-COPY --from=cargo-build /usr/src/playing-with-kubernetes/target/x86_64-unknown-linux-musl/release/playing-with-kubernetes .
+WORKDIR /
+COPY --from=sources /playground/target/x86_64-unknown-linux-musl/release/playing-with-kubernetes .
 EXPOSE 8080
 ENTRYPOINT ["./playing-with-kubernetes"]
 
