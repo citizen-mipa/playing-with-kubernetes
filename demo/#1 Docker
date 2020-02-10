@@ -1,0 +1,14 @@
+# Run locally outside container
+pwsh runcargo.ps1
+
+# Use local vm docker host
+eval $(docker-machine env --unset)
+
+# Run locally in container
+pwsh runcontainer.ps1
+docker container list
+curl localhost:<port>
+
+# Run in Azure Continer Services
+
+
