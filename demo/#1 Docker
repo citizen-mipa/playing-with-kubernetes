@@ -1,5 +1,6 @@
 # Run locally outside container
 pwsh runcargo.ps1
+curl localhost:8080
 
 # Use local vm docker host
 eval $(docker-machine env --unset)
@@ -8,7 +9,8 @@ eval $(docker-machine env --unset)
 pwsh runcontainer.ps1
 docker container list
 curl localhost:<port>
+docker container list
 
 # Run in Azure Continer Services
-
+az container create --name playing-with-kubernetes --resource-group tech-lunch-feb-rg --image techlunchregistry.azurecr.io/playing-with-kubernetes:latest --registry-login-server techlunchregistry.azurecr.io --registry-username techlunchregistry --registry-password "Hd39hFil4/LHgm7NsF5Zl1F8laj6TYqr" --dns-name-label tech-lunch-feb-demo --query ipAddress.fqdn --ports 8080
 

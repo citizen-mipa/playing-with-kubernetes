@@ -1,0 +1,10 @@
+# Set docker host to minikube
+eval $(minikube docker-env)
+
+# Show images available to minikube and what it is running
+docker image ls
+docker container ls --filter="status=running"
+
+# Show running system pods
+kubectl get pods --all-namespaces
+

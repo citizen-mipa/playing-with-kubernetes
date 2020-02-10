@@ -5,6 +5,7 @@ docker inspect playing-with-kubernetes
 docker exec -it e2e517d5a27b  ash -c 'apk add curl'
 docker exec -it e2e517d5a27b  ash -c 'curl http://localhost:8080'
 
+# ---- Docker host ----
 
 # Use minikube vm docker host
 eval $(minikube docker-env)
@@ -12,7 +13,7 @@ eval $(minikube docker-env)
 # Reset docker host
 eval $(docker-machine env --unset)
 
-
+# --- Azure Container Services ----
 
 # Push container to azure container registry
 docker tag playing-with-kubernetes techlunchregistry.azurecr.io/playing-with-kubernetes
@@ -20,4 +21,11 @@ docker login -u techlunchregistry -p "Hd39hFil4/LHgm7NsF5Zl1F8laj6TYqr" techlunc
 docker push techlunchregistry.azurecr.io/playing-with-kubernetes
 
 # Start container in azure container services
-az container create --name playing-with-kubernetes --resource-group tech-lunch-feb-rg --image techlunchregistry.azurecr.io/playing-with-kubernetes:latest --registry-login-server techlunchregistry.azurecr.io --registry-username techlunchregistry --registry-password "Hd39hFil4/LHgm7NsF5Zl1F8laj6TYqr" --dns-name-label tech-lunch-feb-demo --query ipAddress.fqdn
+az container create --name playing-with-kubernetes --resource-group tech-lunch-feb-rg --image techlunchregistry.azurecr.io/playing-with-kubernetes:latest --registry-login-server techlunchregistry.azurecr.io --registry-username techlunchregistry --registry-password "Hd39hFil4/LHgm7NsF5Zl1F8laj6TYqr" --dns-name-label tech-lunch-feb-demo --query ipAddress.fqdn --ports 8080
+
+# Debug said container
+az container show --name playing-with-kubernetes --resource-group tech-lunch-feb-rg
+
+az container exec --resource-group tech-lunch-feb-rg --name playing-with-kubernetes --exec-command "ash"
+    apk add curl
+    curl localhost:8080
