@@ -3,9 +3,11 @@ kind: Service
 metadata:
   name: {{ .Chart.Name }}
 spec:
+  type: NodePort
   selector:
     app: {{ .Chart.Name }}
   ports:
     - protocol: {{ .Values.pod.protocol }}
+      nodePort: 31234
       port: {{ .Values.service.port }}
       targetPort: {{ .Values.pod.port }}

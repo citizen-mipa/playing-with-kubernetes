@@ -1,1 +1,52 @@
-# Deployment
+# start minikube if not done
+minikube start
+
+# Introduce kubectl
+get, delete, describe
+
+# Nodes
+kc get nodes -o wide
+ping <internal ip>
+ifconfig | grep 192
+
+# Look at yaml-files
+    deployment
+    service
+
+# ---- deployments & pods ----
+
+# Apply deployment
+kc apply -f k8s-deployment.yaml
+
+# Look at pods
+kc get pods -o wide
+
+# Look at replica set
+kc get replicasets
+
+# Change deployment (change file)
+kc apply -f k8s-deployment.yaml
+
+# Directly access a pod
+TODO
+
+
+# ---- services ----
+
+# Apply service
+kc apply -f k8s-service.yaml
+
+# Look at service mapping
+kc get endpoints
+
+# Call through service
+kc get nodes -o wide #get ip
+kc get services 
+curl <ip>:<port>
+
+# Look at logs in dashboard
+minikube dashboard
+
+
+# ---- rolling upgrade ----
+TODO: have time for this?

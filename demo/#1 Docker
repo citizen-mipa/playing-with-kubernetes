@@ -5,6 +5,9 @@ curl localhost:8080
 # Use local vm docker host
 eval $(docker-machine env --unset)
 
+# Look at Dockerfile & Images
+docker images ls
+
 # Run locally in container
 pwsh runcontainer.ps1
 docker container list

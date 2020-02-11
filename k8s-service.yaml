@@ -3,9 +3,11 @@ kind: Service
 metadata:
   name: playing-with-kubernetes
 spec:
+  type: NodePort
   selector:
     app: playing-with-kubernetes
   ports:
     - protocol: TCP
+      nodePort: 31234
       port: 8999
       targetPort: 8080
